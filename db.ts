@@ -7,13 +7,3 @@ export const connection = mysql.createPool({
     password: process.env.DB_PASSWORD,
     database: process.env.DATABASE,
 })
-
-
-// export const connectToDB = () => {
-
-//     connection.connect(function (err: any) {
-//         if (err) throw err
-//         console.log('Connected!')
-//     })
-
-// }

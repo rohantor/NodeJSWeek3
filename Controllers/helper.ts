@@ -26,27 +26,25 @@ export const ExecuteQuery = (
         if (errors) {
             console.log('error' + JSON.stringify(errors, null, 2))
 
-            res.status(getStatusCode(errors.code))
-
-            res.write(JSON.stringify('Error ' + errors.sqlMessage))
-            res.end()
+            res.status(getStatusCode(errors.code)).send(JSON.stringify('Error ' + errors.sqlMessage))
+           
         } else {
             if (results.length == 0) {
-                res.write("Content not found for specified query")
+                res.status(200).send("Content not found for specified query")
             } else {
 
                 if (Array.isArray(results)) {
 
-                    res.write(JSON.stringify(results))
+                    res.send(JSON.stringify(results))
                 } else {
 
-                    res.write("Query Executed Successfully  " + results.affectedRows +
+                    res.send("Query Executed Successfully  " + results.affectedRows +
                         " rows affected")
 
                 }
 
             }
-            res.end()
+           
         }
     })
 }
@@ -57,7 +55,7 @@ export const missingPropertyResponse = (res: express.Response) => {
 }
 export const missingPropertyChecker = (array: any[]) => {
     for (let element of array) {
-        console.log(element)
+     
         if (element === undefined) {
             return true
         }

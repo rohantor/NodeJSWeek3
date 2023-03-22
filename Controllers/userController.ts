@@ -15,8 +15,7 @@ export const getAllUsers = (
             queryString += ' OFFSET ' + req.query.offset
         }
     }
-    console.log(Object.entries(req.query))
-    console.log(queryString)
+    
     queryString += ' ;'
     ExecuteQuery(res, queryString)
 
@@ -65,7 +64,8 @@ export const updateUserPUT = (
     req: express.Request, res: express.Response
 ) => {
     const { username, password, roleid, updatedAt, updatedBy } = req.body
-    const { id } = req.params
+   
+    const {id } = req.params
     if (!missingPropertyChecker(
         [username, password, roleid, id, updatedAt, updatedBy])) {
 

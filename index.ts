@@ -8,7 +8,6 @@ dotenv.config()
 const app = express.default()
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        console.log(file)
         cb(null, './uploads/')
     },
     filename: function (req, file, cb) {
@@ -18,10 +17,10 @@ const storage = multer.diskStorage({
 })
 
 app.use(express.json())
+app.use(cors())
 const upload = multer({ storage: storage })
 app.use(express.static('public'))
 app.use(router)
-app.use(cors())
 app.post('/file', upload.single('file'),(req,res)=>{
     res.send("File uploaded")
 })
