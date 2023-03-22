@@ -10,9 +10,8 @@ const idExistsChecker = (req: express.Request, res: express.Response, next: any)
 
     connection.query(query, (error, result, field) => {
         if (error) {
-            res.writeHead(406)
-            res.write(JSON.stringify('Error ' + error))
-            res.end()
+            res.status(406).send(JSON.stringify('Error ' + error))
+           
         } else {
             if (result.length == 0) {
                 res.write("Record  not found for  id = " + req.params.id)

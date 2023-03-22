@@ -27,7 +27,8 @@ export const insertIntoRole = (req: express.Request, res: express.Response) => {
 }
 
 export const updateRolePUT = (req: express.Request, res: express.Response) => {
-  const { name, createdAt, createdBy, updatedAt, updatedBy, id } = req.body;
+  const { name, createdAt, createdBy, updatedAt, updatedBy } = req.body;
+  const {id} = req.params;
   if (!missingPropertyChecker([name, createdAt, createdBy, updatedAt, updatedBy, id])) {
     const query = `update role  set name = "${name}" ,createdAt = "${createdAt}", createdBy = "${createdBy}" , updatedAt = "${updatedAt}" ,updatedBy = ${updatedBy} where id  = ${id};`
     ExecuteQuery(res, query)

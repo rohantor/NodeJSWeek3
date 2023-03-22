@@ -6,6 +6,6 @@ const router = express.Router()
 router.get('/', getAllRoles)
 router.get('/:id', getRoleById)
 router.post('/', insertIntoRole)
-router.put('/', updateRolePUT)
+router.put('/:id', updateRolePUT)
 
 export default router
